@@ -1,0 +1,25 @@
+{
+  "name": "bartoszbartniczak/array-object",
+  "description": "An extension of SPL ArrayObject which does not have all array methods E.g. pop, shift, etc.. The other class ArrayOfObject is an extension of this concept. This array can contain only objects of given type.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Bartosz Bartniczak",
+      "email": "kontakt@bartoszbartniczak.pl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ArrayObject\\": "src/ArrayObject/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ArrayObject\\": "tests/unit-tests/ArrayObject/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.*"
+  }
+}
