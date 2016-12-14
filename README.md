@@ -4,11 +4,11 @@ An extension of SPL ArrayObject which does not have all array methods E.g. pop, 
 -----
 
 ### Table of contents:
-1. [ArrayObject](#array-object)
-2. [ArrayOfObjects](#array-of-objects)
+1. [ArrayObject](#class-arrayobject)
+2. [ArrayOfObjects](#class-arrayofobjects)
 3. [Tests](#tests)
 
-### ArrayObject
+### Class ArrayObject
 
 This class is an extension of the SPL `\ArrayObject` class. It contains all the missing methods. 
 
@@ -32,7 +32,7 @@ Split an array into chunks. Every chunk is an ArrayObject object.
 
 Returns ArrayObject with all the keys.
 
-### ArrayOfObjects
+### Class ArrayOfObjects
 
 This array can contain only objects of defined class.
 
