@@ -4,8 +4,8 @@ An extension of SPL ArrayObject which does not have all array methods E.g. pop, 
 -----
 
 ### Table of contents:
-1. [ArrayObject](#class-arrayobject)
-2. [ArrayOfObjects](#class-arrayofobjects)
+1. [Class ArrayObject](#class-arrayobject)
+2. [Class ArrayOfObjects](#class-arrayofobjects)
 3. [Tests](#tests)
 
 ### Class ArrayObject
@@ -27,6 +27,10 @@ Changes the case of all keys in an ArrayObject
 ##### chunk()
 
 Split an array into chunks. Every chunk is an ArrayObject object.
+
+##### column()
+Return the values from a single column in the input array
+
 
 ##### keys()
 
@@ -64,6 +68,9 @@ $arrayOfObjects->append(new \DateTime());
 ##### chunk()
 
 Split an array into chunks. Every chunk is an ArrayOfObjects object.
+
+##### column()
+Cannot be called on this class. Throws `BadMethodCallException`
 
 ### Tests
 

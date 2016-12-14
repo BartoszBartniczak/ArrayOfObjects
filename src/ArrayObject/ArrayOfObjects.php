@@ -73,6 +73,11 @@ class ArrayOfObjects extends ArrayObject
         parent::offsetSet($index, $newval);
     }
 
+    public function column($columnName, $indexKey = null): ArrayObject
+    {
+        throw new BadMethodCallException(sprintf("Cannot call method 'column'. Use map method instead."));
+    }
+
     /**
      * @param array $arrayOfArrays
      * @return array
@@ -84,5 +89,6 @@ class ArrayOfObjects extends ArrayObject
         }
         return $arrayOfArrays;
     }
+
 
 }

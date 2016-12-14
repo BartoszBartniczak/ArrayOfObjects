@@ -106,4 +106,16 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers \ArrayObject\ArrayOfObjects::column
+     */
+    public function testColumnThrowsBadMethodCallException()
+    {
+        $this->expectException(BadMethodCallException::class);
+        $this->expectExceptionMessage('Cannot call method \'column\'. Use map method instead.');
+
+        $arrayOfObjects = new ArrayOfObjects(\DateTime::class);
+        $arrayOfObjects->column('firstName');
+    }
+
 }
