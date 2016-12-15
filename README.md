@@ -41,5 +41,5 @@ $arrayOfObjects->append(new \DateTime());
 The code has been tested by unit tests. You can run unit test in console (tested only on Linux Ubuntu):
 
 ```bash
-
+php vendor/phpunit/phpunit/phpunit --configuration tests/unit-tests/configuration.xml
 ```
