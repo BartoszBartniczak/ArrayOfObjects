@@ -7,7 +7,7 @@
 namespace ArrayObject;
 
 
-class ArrayOfObjects extends ArrayObject
+class ArrayOfObjects extends \ArrayObject
 {
 
     /**
@@ -71,23 +71,6 @@ class ArrayOfObjects extends ArrayObject
     {
         $this->throwExceptionIfIsNotInstanceOfTheClass($newval);
         parent::offsetSet($index, $newval);
-    }
-
-    public function column($columnName, $indexKey = null): ArrayObject
-    {
-        throw new BadMethodCallException(sprintf("Cannot call method 'column'. Use map method instead."));
-    }
-
-    /**
-     * @param array $arrayOfArrays
-     * @return array
-     */
-    protected function changeArrayOfArraysIntoArrayOfObjects(array $arrayOfArrays): array
-    {
-        foreach ($arrayOfArrays as $key => $array) {
-            $arrayOfArrays[$key] = new ArrayOfObjects($this->getClassName(), $array);
-        }
-        return $arrayOfArrays;
     }
 
 

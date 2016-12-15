@@ -1,56 +1,25 @@
-ArrayObject
+ArrayOfObject
 ===========
-An extension of SPL ArrayObject which does not have all array methods E.g. pop, shift, etc.. The other class ArrayOfObject is an extension of this concept. This array can contain only objects of given type.
+Array object may contain only objects of given type.
 -----
 
 ### Table of contents:
-1. [Class ArrayObject](#class-arrayobject)
-2. [Class ArrayOfObjects](#class-arrayofobjects)
-3. [Tests](#tests)
-
-### Class ArrayObject
-
-This class is an extension of the SPL `\ArrayObject` class. It contains all the missing methods. 
-
-#### Description:
-
-#### Methods:
-
-##### __construct()
-
-Exactly this same as SPL `\ArrayObject` constructor.
-
-##### changeKeyCase()
-
-Changes the case of all keys in an ArrayObject
-
-##### chunk()
-
-Split an array into chunks. Every chunk is an ArrayObject object.
-
-##### column()
-Return the values from a single column in the input array
-
-
-##### keys()
-
-Returns ArrayObject with all the keys.
+1. [Class ArrayOfObjects](#class-arrayofobjects)
+2. [Tests](#tests)
 
 ### Class ArrayOfObjects
 
-This array can contain only objects of defined class.
+Class `ArrayOfObjects` is the extension of the `\ArrayObject` concept. This array may contain only objects of given type.
 
 #### Methods:
 
-This class has exactly this same methods as the class above because it extends it. In this chapter are described those methods which are changed somehow.
-
 ##### __construct()
 
-The first argument is the class name. The rest of the arguments are this same as above.
+The first argument is the class name. The rest of the arguments are this same as in class `\ArrayObject`.
 Constructor can throw `InvalidArgumentException` if one of objects is not instance of the class.
 
 ##### getClassName()
-Returns the name of the class which this array can contain.
+Returns the name of the class which this array may contain.
 
 ##### offsetSet()
 Overrides the method in class `\ArrayObject`. It can throw `InvalidArgumentException` if the object is not the instance of the class.
@@ -65,13 +34,12 @@ $arrayOfObjects->offsetSet(4, new \DateTime());
 $arrayOfObjects->append(new \DateTime());
 ```
 
-##### chunk()
-
-Split an array into chunks. Every chunk is an ArrayOfObjects object.
-
-##### column()
-Cannot be called on this class. Throws `BadMethodCallException`
-
 ### Tests
 
 #### Unit tests
+
+The code has been tested by unit tests. You can run unit test in console (tested only on Linux Ubuntu):
+
+```bash
+
+```
