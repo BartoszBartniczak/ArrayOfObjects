@@ -1,4 +1,4 @@
-ArrayOfObject
+Bartosz Bartniczak / ArrayOfObjects 
 ===========
 Array object may contain only objects of given type.
 -----
