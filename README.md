@@ -1,4 +1,4 @@
-Bartosz Bartniczak / ArrayOfObjects 
+Bartosz Bartniczak / ArrayOfObjects [![Build Status](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects.svg?branch=master)](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects)
 ===========
 Array object may contain only objects of given type.
 -----
