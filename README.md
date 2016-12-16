@@ -1,4 +1,4 @@
-Bartosz Bartniczak / ArrayOfObjects [![Build Status](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects.svg?branch=master)](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects)
+BartoszBartniczak/ArrayOfObjects [![Build Status](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects.svg?branch=master)](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects)
 ===========
 ArrayOfObjects is the extension of the SPL ArrayObject concept. ArrayOfObjects may contain only objects of given type.
 -----
@@ -33,6 +33,12 @@ $arrayOfObjects[] = new \DateTime();
 $arrayOfObjects->offsetSet(4, new \DateTime());
 $arrayOfObjects->append(new \DateTime());
 ```
+
+__NOTICE:__ `exchangeArray()` method does not use any of those methods. So, it has to be overwrite.
+
+##### exchangeArray()
+
+Exchange the array for another one.
 
 ### Tests
 

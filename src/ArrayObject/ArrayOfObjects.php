@@ -73,5 +73,20 @@ class ArrayOfObjects extends \ArrayObject
         parent::offsetSet($index, $newval);
     }
 
+    /**
+     * Exchange the array for another one.
+     * @param mixed $input
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function exchangeArray($input)
+    {
+        foreach ($input as $item) {
+            $this->throwExceptionIfIsNotInstanceOfTheClass($item);
+        }
+
+        parent::exchangeArray($input);
+    }
+
 
 }

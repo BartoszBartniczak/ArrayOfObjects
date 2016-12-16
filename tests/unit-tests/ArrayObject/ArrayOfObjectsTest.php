@@ -89,4 +89,25 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
         $arrayOfObjects[] = new \DateTimeZone('Europe/Warsaw');
     }
 
+    /**
+     * @covers \ArrayObject\ArrayOfObjects::exchangeArray
+     */
+    public function testExchangeArray()
+    {
+        $arrayOfObjects = new ArrayOfObjects(\DateTime::class, [new \DateTime(), new \DateTime()]);
+        $arrayOfObjects->exchangeArray([new \DateTime()]);
+    }
+
+    /**
+     * @covers \ArrayObject\ArrayOfObjects::exchangeArray
+     */
+    public function testExchangeArrayThrowsInvalidArgumentException()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Expected instance of '\DateTime'. '\DateTimeZone' given.");
+
+        $arrayOfObjects = new ArrayOfObjects(\DateTime::class, [new \DateTime(), new \DateTime()]);
+        $arrayOfObjects->exchangeArray([new \DateTimeZone('Europe/Warsaw')]);
+    }
+
 }
