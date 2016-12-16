@@ -4,7 +4,7 @@
  * User: Bartosz Bartniczak <kontakt@bartoszbartniczak.pl>
  */
 
-namespace ArrayObject;
+namespace BartoszBartniczak\ArrayObject;
 
 
 class InvalidArgumentException extends \InvalidArgumentException
