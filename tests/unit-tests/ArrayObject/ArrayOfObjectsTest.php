@@ -31,7 +31,7 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::__construct
-     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfIsNotInstanceOfTheClass
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfObjectIsNotInstanceOfTheClass
      */
     public function testConstructorThrowsExceptionIfAtLeastOneOfTheObjectsIsNotInstanceOfTheClass()
     {
@@ -54,7 +54,7 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::offsetSet
-     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfIsNotInstanceOfTheClass
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfObjectIsNotInstanceOfTheClass
      */
     public function testOffsetSetThrowsExceptionWhenIfTheObjectIsNotInstanceOfTheClass()
     {
@@ -67,7 +67,7 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::offsetSet
      * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::append
-     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfIsNotInstanceOfTheClass
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfObjectIsNotInstanceOfTheClass
      */
     public function testAppendThrowsExceptionWhenIfTheObjectIsNotInstanceOfTheClass()
     {
@@ -79,7 +79,7 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::offsetSet
-     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfIsNotInstanceOfTheClass
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfObjectIsNotInstanceOfTheClass
      */
     public function testNewElementThrowsExceptionWhenIfTheObjectIsNotInstanceOfTheClass()
     {

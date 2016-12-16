@@ -31,7 +31,7 @@ class ArrayOfObjects extends \ArrayObject
         }
 
         foreach ($input as $object) {
-            $this->throwExceptionIfIsNotInstanceOfTheClass($object);
+            $this->throwExceptionIfObjectIsNotInstanceOfTheClass($object);
         }
 
         parent::__construct($input, $flags, $iterator_class);
@@ -41,7 +41,7 @@ class ArrayOfObjects extends \ArrayObject
      * @param $object
      * @throws InvalidArgumentException
      */
-    private function throwExceptionIfIsNotInstanceOfTheClass($object)
+    protected function throwExceptionIfObjectIsNotInstanceOfTheClass($object)
     {
         if (!$object instanceof $this->className) {
             throw new InvalidArgumentException(
@@ -69,7 +69,7 @@ class ArrayOfObjects extends \ArrayObject
      */
     public function offsetSet($index, $newval)
     {
-        $this->throwExceptionIfIsNotInstanceOfTheClass($newval);
+        $this->throwExceptionIfObjectIsNotInstanceOfTheClass($newval);
         parent::offsetSet($index, $newval);
     }
 
@@ -82,7 +82,7 @@ class ArrayOfObjects extends \ArrayObject
     public function exchangeArray($input)
     {
         foreach ($input as $item) {
-            $this->throwExceptionIfIsNotInstanceOfTheClass($item);
+            $this->throwExceptionIfObjectIsNotInstanceOfTheClass($item);
         }
 
         parent::exchangeArray($input);

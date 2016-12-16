@@ -40,6 +40,9 @@ __NOTICE:__ `exchangeArray()` method does not use any of those methods. So, it h
 
 Exchange the array for another one.
 
+##### throwExceptionIfObjectIsNotInstanceOfTheClass()
+You can overwrite this protected method if you want to throw your own exception.
+
 ### Tests
 
 #### Unit tests

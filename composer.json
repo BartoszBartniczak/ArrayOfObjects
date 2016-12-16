@@ -3,7 +3,7 @@
   "description": "ArrayOfObjects is the extension of the SPL ArrayObject concept. ArrayOfObjects may contain only objects of given type.",
   "minimum-stability": "stable",
   "license": "Apache Licence 2.0",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Bartosz Bartniczak",
