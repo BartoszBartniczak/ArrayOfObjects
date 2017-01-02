@@ -4,12 +4,36 @@ ArrayOfObjects is the extension of the SPL ArrayObject concept. ArrayOfObjects m
 -----
 
 ### Table of contents:
+1. [Class ArrayObject](#class-arrayobject)
 1. [Class ArrayOfObjects](#class-arrayofobjects)
 2. [Tests](#tests)
 
+### Class ArrayObject
+
+#### Methods:
+
+##### filter()
+Iterates over each value in the array passing them to the callback function.
+If the callback function returns true, the current value from array is returned into the result ArrayObject. Array keys are preserved.
+
+##### shift()
+Shifts an element off the beginning of array.
+
+##### pop()
+Pops the element off the end of array.
+
+##### merge()
+Merges two arrays.
+
+##### isEmpty()
+Checks if array is empty.
+
+##### isNotEmpty()
+Checks if array is not empty.
+
 ### Class ArrayOfObjects
 
-Class `ArrayOfObjects` is the extension of the `\ArrayObject` concept. This array may contain only objects of given type.
+Class `ArrayOfObjects` is the extension of the `ArrayObject` concept. This array may contain only objects of given type.
 
 #### Methods:
 

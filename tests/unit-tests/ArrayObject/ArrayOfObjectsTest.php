@@ -17,7 +17,7 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
     public function testConstructor()
     {
         $arrayOfObjects = new ArrayOfObjects(\DateTime::class);
-        $this->assertInstanceOf(\ArrayObject::class, $arrayOfObjects);
+        $this->assertInstanceOf(ArrayObject::class, $arrayOfObjects);
         $this->assertEquals(\DateTime::class, $arrayOfObjects->getClassName());
 
         $arrayOfObjects = new ArrayOfObjects(\DateTime::class, [new \DateTime(), new \DateTime()]);
@@ -109,5 +109,24 @@ class ArrayOfObjectsTest extends \PHPUnit_Framework_TestCase
         $arrayOfObjects = new ArrayOfObjects(\DateTime::class, [new \DateTime(), new \DateTime()]);
         $arrayOfObjects->exchangeArray([new \DateTimeZone('Europe/Warsaw')]);
     }
+
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::merge
+     * @covers \BartoszBartniczak\ArrayObject\ArrayOfObjects::throwExceptionIfObjectIsNotInstanceOfTheClass
+     */
+    public function testMergeThrowsInvalidArgumentExceptionIfTheObjectAreNotInstanceOfTheClass()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Expected instance of '\DateTime'. '\DateTimeZone' given.");
+
+        $arrayOfObjectsFirst = new ArrayOfObjects(\DateTime::class, [new \DateTime()]);
+        $arrayOfObjectsSecond = new ArrayOfObjects(\DateTimeZone::class, [new \DateTimeZone('Europe/Warsaw')]);
+        $arrayOfObjectsFirst->merge($arrayOfObjectsSecond);
+    }
+
+
+
+
 
 }

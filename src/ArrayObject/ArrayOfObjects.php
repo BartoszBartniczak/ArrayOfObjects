@@ -7,7 +7,7 @@
 namespace BartoszBartniczak\ArrayObject;
 
 
-class ArrayOfObjects extends \ArrayObject
+class ArrayOfObjects extends ArrayObject
 {
 
     /**
@@ -87,6 +87,5 @@ class ArrayOfObjects extends \ArrayObject
 
         parent::exchangeArray($input);
     }
-
 
 }
