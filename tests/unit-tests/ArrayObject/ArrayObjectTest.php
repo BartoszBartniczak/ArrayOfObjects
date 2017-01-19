@@ -95,5 +95,58 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($second, $arrayOfObjectsFirst->offsetGet(1));
     }
 
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::keys
+     */
+    public function testKeys()
+    {
+        $arrayObject = new ArrayObject([1, 2, 3, 4, 5]);
+        $this->assertEquals(new ArrayObject([0, 1, 2, 3, 4]), $arrayObject->keys());
+
+        $arrayObject = new ArrayObject([12 => 1, 13 => 2, 14 => 3, 15 => 4, 16 => 5]);
+        $this->assertEquals(new ArrayObject([12, 13, 14, 15, 16]), $arrayObject->keys());
+
+        $arrayObject = new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5]);
+        $this->assertEquals(new ArrayObject(['a', 'b', 'c', 'd', 'e']), $arrayObject->keys());
+
+        $arrayObject = new ArrayObject([12 => 1, 'b' => 2, 14 => 3, 'd' => 4, 16 => 5]);
+        $this->assertEquals(new ArrayObject([12, 'b', 14, 'd', 16]), $arrayObject->keys());
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::first
+     */
+    public function testFirst()
+    {
+        $arrayObject = new ArrayObject([1, 2, 3, 4, 5]);
+        $this->assertSame(1, $arrayObject->first());
+
+        $arrayObject = new ArrayObject([12 => 1, 13 => 2, 14 => 3, 15 => 4, 16 => 5]);
+        $this->assertSame(1, $arrayObject->first());
+
+        $arrayObject = new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5]);
+        $this->assertSame(1, $arrayObject->first());
+
+        $arrayObject = new ArrayObject([12 => 1, 'b' => 2, 14 => 3, 'd' => 4, 16 => 5]);
+        $this->assertSame(1, $arrayObject->first());
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::last
+     */
+    public function testLast()
+    {
+        $arrayObject = new ArrayObject([1, 2, 3, 4, 5]);
+        $this->assertSame(5, $arrayObject->last());
+
+        $arrayObject = new ArrayObject([12 => 1, 13 => 2, 14 => 3, 15 => 4, 16 => 5]);
+        $this->assertSame(5, $arrayObject->last());
+
+        $arrayObject = new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5]);
+        $this->assertSame(5, $arrayObject->last());
+
+        $arrayObject = new ArrayObject([12 => 1, 'b' => 2, 14 => 3, 'd' => 4, 16 => 5]);
+        $this->assertSame(5, $arrayObject->last());
+    }
 
 }

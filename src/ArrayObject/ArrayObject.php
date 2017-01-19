@@ -24,30 +24,6 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
-     * Shift an element off the beginning of array
-     * @return mixed
-     */
-    public function shift()
-    {
-        $arrayCopy = $this->getArrayCopy();
-        $firstElement = array_shift($arrayCopy);
-        $this->exchangeArray($arrayCopy);
-        return $firstElement;
-    }
-
-    /**
-     * Pop the element off the end of array
-     * @return mixed
-     */
-    public function pop()
-    {
-        $arrayCopy = $this->getArrayCopy();
-        $lastElement = array_pop($arrayCopy);
-        $this->exchangeArray($arrayCopy);
-        return $lastElement;
-    }
-
-    /**
      * Checks if array is empty
      * @return bool
      */
@@ -76,4 +52,58 @@ class ArrayObject extends \ArrayObject
         $this->exchangeArray(array_merge($arrayCopy, $arrayToMerge));
     }
 
+    /**
+     * Returns the first element, ignoring the type of the keys.
+     * @return mixed
+     */
+    public function first()
+    {
+        $keys = $this->keys();
+        $keyOfTheFirstElement = $keys->shift();
+        return $this->offsetGet($keyOfTheFirstElement);
+    }
+
+    /**
+     * Returns all the keys of the array.
+     * @return ArrayObject
+     */
+    public function keys(): ArrayObject
+    {
+        return new ArrayObject(array_keys($this->getArrayCopy()));
+    }
+
+    /**
+     * Shift an element off the beginning of array
+     * @return mixed
+     */
+    public function shift()
+    {
+        $arrayCopy = $this->getArrayCopy();
+        $firstElement = array_shift($arrayCopy);
+        $this->exchangeArray($arrayCopy);
+        return $firstElement;
+    }
+
+    /**
+     * Returns the last element, ignoring the type of the keys.
+     * @return mixed
+     */
+    public function last()
+    {
+        $keys = $this->keys();
+        $keyOfTheLastElement = $keys->pop();
+        return $this->offsetGet($keyOfTheLastElement);
+    }
+
+    /**
+     * Pop the element off the end of array
+     * @return mixed
+     */
+    public function pop()
+    {
+        $arrayCopy = $this->getArrayCopy();
+        $lastElement = array_pop($arrayCopy);
+        $this->exchangeArray($arrayCopy);
+        return $lastElement;
+    }
 }

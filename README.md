@@ -31,6 +31,15 @@ Checks if array is empty.
 ##### isNotEmpty()
 Checks if array is not empty.
 
+##### keys()
+Returns all the keys of the array.
+
+##### first()
+Returns the first element, ignoring the type of the keys.
+
+##### last()
+Returns the last element, ignoring the type of the keys.
+
 ### Class ArrayOfObjects
 
 Class `ArrayOfObjects` is the extension of the `ArrayObject` concept. This array may contain only objects of given type.
