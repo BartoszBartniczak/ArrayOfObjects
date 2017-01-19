@@ -1,4 +1,4 @@
-BartoszBartniczak/ArrayOfObjects [![Build Status](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects.svg?branch=master)](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects)
+BartoszBartniczak/ArrayOfObjects [![Build Status](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects.svg?branch=master)](https://travis-ci.org/BartoszBartniczak/ArrayOfObjects) [![Coverage Status](https://coveralls.io/repos/github/BartoszBartniczak/ArrayOfObjects/badge.svg?branch=master)](https://coveralls.io/github/BartoszBartniczak/ArrayOfObjects?branch=master)
 ===========
 ArrayOfObjects is the extension of the SPL ArrayObject concept. ArrayOfObjects may contain only objects of given type.
 -----
