@@ -7,8 +7,45 @@
 namespace BartoszBartniczak\ArrayObject;
 
 
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\KeyNamingStrategy;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\StandardStrategy;
+
 class ArrayObject extends \ArrayObject
 {
+
+    const DEFAULT_FLAGS = 0;
+    const DEFAULT_ITERATOR_CLASS = "ArrayIterator";
+
+    /**
+     * @var KeyNamingStrategy
+     */
+    private $keyNamingStrategy;
+
+    public function __construct(array $input = [], int $flags = self::DEFAULT_FLAGS, string $iterator_class = self::DEFAULT_ITERATOR_CLASS, KeyNamingStrategy $keyNamingStrategy = null)
+    {
+        parent::__construct($input, $flags, $iterator_class);
+
+        if ($keyNamingStrategy instanceof KeyNamingStrategy) {
+            $this->keyNamingStrategy = $keyNamingStrategy;
+        } else {
+            $this->keyNamingStrategy = new StandardStrategy();
+        }
+    }
+
+    public function offsetSet($index, $newval)
+    {
+        $index = $this->getKeyNamingStrategy()->key($index, $newval);
+
+        parent::offsetSet($index, $newval);
+    }
+
+    /**
+     * @return KeyNamingStrategy
+     */
+    public function getKeyNamingStrategy(): KeyNamingStrategy
+    {
+        return $this->keyNamingStrategy;
+    }
 
     /**
      * Iterates over each value in the array passing them to the callback function.

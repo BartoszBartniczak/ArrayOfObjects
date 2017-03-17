@@ -7,6 +7,9 @@
 namespace BartoszBartniczak\ArrayObject;
 
 
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\KeyNamingStrategy;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\StandardStrategy;
+
 class ArrayOfObjects extends ArrayObject
 {
 
@@ -18,23 +21,24 @@ class ArrayOfObjects extends ArrayObject
     /**
      * ArrayOfObjects constructor.
      * @param string $className Name of the class which this array can contain.
-     * @param array|null $input
+     * @param array $input
      * @param int $flags
      * @param string $iterator_class
-     * @throws InvalidArgumentException
+     * @param KeyNamingStrategy $keyNamingStrategy
      */
-    public function __construct(string $className, array $input = null, $flags = 0, $iterator_class = "ArrayIterator")
+    public function __construct(string $className, array $input = [], int $flags = self::DEFAULT_FLAGS, string $iterator_class = self::DEFAULT_ITERATOR_CLASS, KeyNamingStrategy $keyNamingStrategy = null)
     {
         $this->className = $className;
-        if (!is_array($input)) {
-            $input = [];
-        }
 
         foreach ($input as $object) {
             $this->throwExceptionIfObjectIsNotInstanceOfTheClass($object);
         }
 
-        parent::__construct($input, $flags, $iterator_class);
+        if (!$keyNamingStrategy instanceof KeyNamingStrategy) {
+            $keyNamingStrategy = new StandardStrategy();
+        }
+
+        parent::__construct($input, $flags, $iterator_class, $keyNamingStrategy);
     }
 
     /**

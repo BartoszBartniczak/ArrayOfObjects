@@ -7,6 +7,9 @@
 namespace BartoszBartniczak\ArrayObject;
 
 
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\StandardStrategy;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\ValueAsKeyStrategy;
+
 class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -22,7 +25,38 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::__construct
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::getKeyNamingStrategy
+     */
+    public function testConstructorSetsStandardStrategy()
+    {
+        $arrayObject = new ArrayObject();
+
+        $this->assertInstanceOf(StandardStrategy::class, $arrayObject->getKeyNamingStrategy());
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::__construct
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::offsetSet
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::getKeyNamingStrategy
+     */
+    public function testConstructorUsesKeyNamingStrategy()
+    {
+
+        $valueAsKeyStrategy = new ValueAsKeyStrategy();
+
+        $arrayObject = new ArrayObject([], ArrayObject::DEFAULT_FLAGS, ArrayObject::DEFAULT_ITERATOR_CLASS, $valueAsKeyStrategy);
+        $this->assertSame($valueAsKeyStrategy, $arrayObject->getKeyNamingStrategy());
+
+        $arrayObject[] = 'value1';
+        $arrayObject[] = 'value2';
+
+        $this->assertEquals(['value1' => 'value1', 'value2' => 'value2'], $arrayObject->getArrayCopy());
+    }
+
+    /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::shift
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testShift()
     {
@@ -47,6 +81,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::pop
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testPop()
     {
@@ -115,6 +150,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::first
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testFirst()
     {
@@ -133,6 +169,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::last
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testLast()
     {
@@ -151,6 +188,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::pop
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testPopThrowsExceptionIfArrayIsEmpty()
     {
@@ -164,6 +202,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::shift
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testShiftThrowsExceptionIfArrayIsEmpty()
     {
@@ -176,6 +215,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::first
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testFirstThrowsExceptionIfArrayIsEmpty()
     {
@@ -188,6 +228,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \BartoszBartniczak\ArrayObject\ArrayObject::last
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::throwExceptionIfEmpty
      */
     public function testLastThrowsExceptionIfArrayIsEmpty()
     {

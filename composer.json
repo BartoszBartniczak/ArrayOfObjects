@@ -19,6 +19,9 @@
       "BartoszBartniczak\\ArrayObject\\": "tests/unit-tests/ArrayObject/"
     }
   },
+  "require": {
+    "php": ">7.0"
+  },
   "require-dev": {
     "phpunit/phpunit": "5.*",
     "satooshi/php-coveralls": "*",
