@@ -76,6 +76,72 @@ Exchange the array for another one.
 ##### throwExceptionIfObjectIsNotInstanceOfTheClass()
 You can overwrite this protected method if you want to throw your own exception.
 
+### Key Naming Strategy
+
+Since version 1.3 this library delivers new functionality - Key Naming Strategy. It allows you to choose how the keys of array are generated.
+
+#### StandardStrategy
+
+Default strategy is [StandardStrategy](src/ArrayObject/KeyNamingStrategy/StandardStrategy.php). Which behaves exactly like PHP arrays key naming strategy.
+
+```php
+<?php
+use BartoszBartniczak\ArrayObject\ArrayObject;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\StandardStrategy;
+
+$arrayObject = new ArrayObject([], ArrayObject::DEFAULT_FLAGS, ArrayObject::DEFAULT_ITERATOR_CLASS, new StandardStrategy());
+
+$arrayObject[] = 'a';
+$arrayObject[] = 'b';
+$arrayObject[] = 'c';
+```
+
+Keys in this ArrayObject are: `0`, `1` and `2`.
+
+In fact you do not need to deliver this object to constructor. By default `ArrayObject::__construct` will create this object for you.
+
+#### ValueAsKeyStrategy
+
+The second strategy is [ValueAsKeyStrategy](src/ArrayObject/KeyNamingStrategy/ValueAsKeyStrategy.php). Which forces array to store values as keys.
+
+```php
+<?php
+use BartoszBartniczak\ArrayObject\ArrayObject;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\ValueAsKeyStrategy;
+
+$arrayObject = new ArrayObject([], ArrayObject::DEFAULT_FLAGS, ArrayObject::DEFAULT_ITERATOR_CLASS, new ValueAsKeyStrategy());
+
+$arrayObject[] = 'a';
+$arrayObject[] = 'b';
+$arrayObject[] = 'c';
+```
+Keys in this ArrayObject are: `a`, `b` and `c`.
+
+#### ClosureStrategy
+
+The last one, but probably the most useful is [ClosureStrategy](src/ArrayObject/KeyNamingStrategy/ClosureStrategy.php). You need to determine Closure function which will be extracting keys. This strategy fits to working with objects.
+
+```php
+<?php
+use BartoszBartniczak\ArrayObject\ArrayOfObjects;
+use BartoszBartniczak\ArrayObject\KeyNamingStrategy\ClosureStrategy;
+
+$closureStrategy = new ClosureStrategy(
+    function ($key, \DateTime $dateTime){
+        return $dateTime->format('Y-m-d');
+    }
+);
+
+$arrayOfObjects = new ArrayOfObjects(\DateTime::class, [], ArrayOfObjects::DEFAULT_FLAGS, ArrayOfObjects::DEFAULT_ITERATOR_CLASS, $closureStrategy);
+
+$arrayOfObjects = new \DateTime('2017-03-15');
+$arrayOfObjects = new \DateTime('2017-03-16');
+$arrayOfObjects = new \DateTime('2017-03-17');
+```
+
+Keys in this ArrayObject are: `2017-03-15`, `2017-03-16` and `2017-03-17`.
+
+
 ### Tests
 
 #### Unit tests
@@ -85,3 +151,4 @@ The code has been tested by unit tests. You can run unit test in console (tested
 ```bash
 php vendor/phpunit/phpunit/phpunit --configuration tests/unit-tests/configuration.xml
 ```
+
