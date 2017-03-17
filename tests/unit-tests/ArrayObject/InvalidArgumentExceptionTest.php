@@ -6,11 +6,16 @@
 
 namespace BartoszBartniczak\ArrayObject;
 
-class InvalidArgumentExceptionTest extends \PHPUnit_Framework_TestCase
+use BartoszBartniczak\TestCase\ExceptionTestCase;
+
+class InvalidArgumentExceptionTest extends ExceptionTestCase
 {
 
     public function testExtendsSplInvalidArgumentException()
     {
+        $this->assertConstructorDoesNotRequiredAnyArguments(InvalidArgumentException::class);
+        $this->assertConstructorUsesStandardArguments(InvalidArgumentException::class);
+
         $this->assertInstanceOf(\InvalidArgumentException::class, new InvalidArgumentException());
     }
 

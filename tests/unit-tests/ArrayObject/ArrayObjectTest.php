@@ -149,4 +149,53 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(5, $arrayObject->last());
     }
 
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::pop
+     */
+    public function testPopThrowsExceptionIfArrayIsEmpty()
+    {
+
+        $this->expectException(EmptyArrayException::class);
+        $this->expectExceptionMessage('Array is empty. Cannot return any element.');
+
+        $arrayObject = new ArrayObject();
+        $arrayObject->pop();
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::shift
+     */
+    public function testShiftThrowsExceptionIfArrayIsEmpty()
+    {
+        $this->expectException(EmptyArrayException::class);
+        $this->expectExceptionMessage('Array is empty. Cannot return any element.');
+
+        $arrayObject = new ArrayObject();
+        $arrayObject->shift();
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::first
+     */
+    public function testFirstThrowsExceptionIfArrayIsEmpty()
+    {
+        $this->expectException(EmptyArrayException::class);
+        $this->expectExceptionMessage('Array is empty. Cannot return any element.');
+
+        $arrayObject = new ArrayObject();
+        $arrayObject->first();
+    }
+
+    /**
+     * @covers \BartoszBartniczak\ArrayObject\ArrayObject::last
+     */
+    public function testLastThrowsExceptionIfArrayIsEmpty()
+    {
+        $this->expectException(EmptyArrayException::class);
+        $this->expectExceptionMessage('Array is empty. Cannot return any element.');
+
+        $arrayObject = new ArrayObject();
+        $arrayObject->last();
+    }
+
 }

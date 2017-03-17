@@ -22,6 +22,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "5.*",
-    "satooshi/php-coveralls": "*"
+    "satooshi/php-coveralls": "*",
+    "bartoszbartniczak/test-case": "1.0.0"
   }
 }

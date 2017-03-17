@@ -24,6 +24,40 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
+     * Merge two arrays.
+     * @param ArrayObject $arrayObject
+     */
+    public function merge(ArrayObject $arrayObject)
+    {
+        $arrayCopy = $this->getArrayCopy();
+        $arrayToMerge = $arrayObject->getArrayCopy();
+        $this->exchangeArray(array_merge($arrayCopy, $arrayToMerge));
+    }
+
+    /**
+     * Returns the first element, ignoring the type of the keys.
+     * @return mixed
+     */
+    public function first()
+    {
+        $this->throwExceptionIfEmpty();
+
+        $keys = $this->keys();
+        $keyOfTheFirstElement = $keys->shift();
+        return $this->offsetGet($keyOfTheFirstElement);
+    }
+
+    /**
+     * Throws EmptyArrayException in array is empty
+     */
+    private function throwExceptionIfEmpty(): void
+    {
+        if ($this->isEmpty()) {
+            throw new EmptyArrayException('Array is empty. Cannot return any element.');
+        }
+    }
+
+    /**
      * Checks if array is empty
      * @return bool
      */
@@ -42,28 +76,6 @@ class ArrayObject extends \ArrayObject
     }
 
     /**
-     * Merge two arrays.
-     * @param ArrayObject $arrayObject
-     */
-    public function merge(ArrayObject $arrayObject)
-    {
-        $arrayCopy = $this->getArrayCopy();
-        $arrayToMerge = $arrayObject->getArrayCopy();
-        $this->exchangeArray(array_merge($arrayCopy, $arrayToMerge));
-    }
-
-    /**
-     * Returns the first element, ignoring the type of the keys.
-     * @return mixed
-     */
-    public function first()
-    {
-        $keys = $this->keys();
-        $keyOfTheFirstElement = $keys->shift();
-        return $this->offsetGet($keyOfTheFirstElement);
-    }
-
-    /**
      * Returns all the keys of the array.
      * @return ArrayObject
      */
@@ -78,6 +90,8 @@ class ArrayObject extends \ArrayObject
      */
     public function shift()
     {
+        $this->throwExceptionIfEmpty();
+
         $arrayCopy = $this->getArrayCopy();
         $firstElement = array_shift($arrayCopy);
         $this->exchangeArray($arrayCopy);
@@ -90,6 +104,8 @@ class ArrayObject extends \ArrayObject
      */
     public function last()
     {
+        $this->throwExceptionIfEmpty();
+
         $keys = $this->keys();
         $keyOfTheLastElement = $keys->pop();
         return $this->offsetGet($keyOfTheLastElement);
@@ -98,9 +114,12 @@ class ArrayObject extends \ArrayObject
     /**
      * Pop the element off the end of array
      * @return mixed
+     * @throws EmptyArrayException
      */
     public function pop()
     {
+        $this->throwExceptionIfEmpty();
+
         $arrayCopy = $this->getArrayCopy();
         $lastElement = array_pop($arrayCopy);
         $this->exchangeArray($arrayCopy);
