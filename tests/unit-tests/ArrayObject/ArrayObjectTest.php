@@ -50,8 +50,11 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase
 
         $arrayObject[] = 'value1';
         $arrayObject[] = 'value2';
-
         $this->assertEquals(['value1' => 'value1', 'value2' => 'value2'], $arrayObject->getArrayCopy());
+
+        $arrayObject = new ArrayObject(['value1', 'value2'], ArrayObject::DEFAULT_FLAGS, ArrayObject::DEFAULT_ITERATOR_CLASS, $valueAsKeyStrategy);
+        $this->assertEquals(['value1' => 'value1', 'value2' => 'value2'], $arrayObject->getArrayCopy());
+
     }
 
     /**

@@ -23,13 +23,22 @@ class ArrayObject extends \ArrayObject
 
     public function __construct(array $input = [], int $flags = self::DEFAULT_FLAGS, string $iterator_class = self::DEFAULT_ITERATOR_CLASS, KeyNamingStrategy $keyNamingStrategy = null)
     {
-        parent::__construct($input, $flags, $iterator_class);
 
         if ($keyNamingStrategy instanceof KeyNamingStrategy) {
             $this->keyNamingStrategy = $keyNamingStrategy;
         } else {
             $this->keyNamingStrategy = new StandardStrategy();
         }
+
+        $inputWithAppliedStrategy = [];
+
+        foreach ($input as $key => $value) {
+            $key = $this->keyNamingStrategy->key($key, $value);
+            $inputWithAppliedStrategy[$key] = $value;
+        }
+
+
+        parent::__construct($inputWithAppliedStrategy, $flags, $iterator_class);
     }
 
     public function offsetSet($index, $newval)
