@@ -87,7 +87,7 @@ class ArrayObject extends \ArrayObject
     /**
      * Throws EmptyArrayException in array is empty
      */
-    private function throwExceptionIfEmpty(): void
+    private function throwExceptionIfEmpty()
     {
         if ($this->isEmpty()) {
             throw new EmptyArrayException('Array is empty. Cannot return any element.');
